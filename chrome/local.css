@@ -8,3 +8,47 @@ layout: nil
  * =============================================================================
  */
 
+
+.ribbon {
+	background-color: #55c4bb;
+}
+.ribbon a {
+	border: 1px solid #63fff2;
+}
+#navtop {
+  background-image:url('../chrome/huruf/star-32.png');
+  display:inline-block;
+  width:32px;
+  height:32px;
+  margin-right:3em;
+}
+#navactive0 {
+  background-image:url('../chrome/huruf/0-32.png');
+  display:inline-block;
+  width: 32px;
+  height: 32px;
+}
+#navactive1 {
+  background-image:url('../chrome/huruf/1-32.png');
+  display:inline-block;
+  width: 32px;
+  height: 32px;
+}
+#navactive2 {
+  background-image:url('../chrome/huruf/2-32.png');
+  display:inline-block;
+  width: 32px;
+  height: 32px;
+}
+#navactive7 {
+  background-image:url('../chrome/huruf/7-32.png');
+  display:inline-block;
+  width: 32px;
+  height: 32px;
+}
+#navactive9 {
+  background-image:url('../chrome/huruf/9-32.png');
+  display:inline-block;
+  width: 32px;
+  height: 32px;
+}
