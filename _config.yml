@@ -87,7 +87,7 @@ param:
         # dikkat!  değişkenin tanımlı olmaması için ~ değeri verin
         # --------------------------------------------------------------
         # girdi arşivi
-        archive: Son Girdiler
+        ##archive: Son Girdiler
         # ilişkili girdiler
         related: Diğer Girdiler
         # logo (ör. http://00010011.github.com/assets/19/19-normal-128x128.png)
