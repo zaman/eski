@@ -100,3 +100,5 @@ param:
         disqus: ~
         # GitHub şerit metni (ör. GitHub'dayım)
         ribbon: zaman.github.com
+	#twitter
+	twitter: true
