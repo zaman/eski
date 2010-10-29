@@ -24,7 +24,7 @@ organization: 19
 repository: zaman.github.com
 
 # üretilen sitenin web adresi ne?  ör. "http://foo.github.com/bar".
-url: zaman.com
+url: http://zaman.github.com
 
 # sitede kullanılan ortak "dijital varlıklar"ın (ör. görseller, logolar)
 # adresi.  dikkat:
@@ -50,7 +50,7 @@ param:
         # dikkat!  sisteminizdeki ad github hesabından farklı olabilir
         name: zaman
         # tam kullanıcı adı (ör. Recai Oktaş)
-        fullname: zafer amanvermez
+        fullname: 
         # email adresi (ör. roktas@bil.omu.edu.tr)
         email: zaman@bil.omu.edu.tr
         # sitede kullanılacak tepe web adresi (ör. http://roktas.me)
