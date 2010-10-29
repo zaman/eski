@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# En son üzerinde çalışılan girdiyi düzenle.
+#
+# Argüman opsiyoneldir ve kategori belirtir.
+#
+# Argüman verilmezse kategori olarak dizin değişme tarihi en yeni olan
+# kategori seçilir.
+
+set -e
+
+THISDIR="${0%/*}"
+. $THISDIR/../util.sh
+
+currentpost=$(currentpost "$@")
+if [ -z "$currentpost" ]; then
+	checksect "$@"
+	internalerror "güncel posta hesaplanamadı"
+fi
+if [ ! -f "$currentpost" ]; then
+	internalerror "güncel posta varolmayan bir posta olarak hesaplandı"
+fi
+
+editor "$currentpost"
+
+# Dosyanın stage'te olduğundan emin ol.  Bunu yapmazsak iki olumsuz seçenek var:
+# - commit için gönderi ismi gerekecek ör. "git commit <gönderi>"
+# - "git commit -a" ile gönderilecek (bk. hepsi bir arada komitleme sendromu)
+# Artık "stage"e alındığından sadece "git commit" yeterli.
+#
+# Gedit için not:
+# Gedit kural dışı (bk. https://bugzilla.gnome.org/show_bug.cgi?id=112908)
+# Yeni Gedit sürümlerinde bu sorun giderilmiş durumda.
+git add "$currentpost"
+echo $currentpost

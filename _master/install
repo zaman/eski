@@ -1,0 +1,115 @@
+#!/bin/bash
+
+# Depoyu yeni bir kişisel site için hazırla.
+
+set -e
+
+THISDIR="${0%/*}"
+. $THISDIR/util.sh
+
+UPSTREAM_ADDR="github.com/00010011/site.git"
+
+remote_orig_url=$(git config remote.origin.url ||:)
+case "$remote_orig_url" in
+*$UPSTREAM_ADDR)
+	die "Depoyu ayırmak (fork) yerine klonlamışsınız.  Lütfen README.md belgesini dikkatli okuyun!"
+	;;
+esac
+
+missing_debs=
+missing_gems=
+
+pathfind ruby   || missing_debs="${missing_debs} ruby"
+pathfind gem    || missing_debs="${missing_debs} rubygems"
+pkgfind ruby1.8-dev || missing_debs="${missing_debs} ruby1.8-dev"
+pkgfind libhighline-ruby || missing_debs="${missing_debs} libhighline-ruby"
+pathfind rdiscount || missing_gems="${missing_gems} rdiscount"
+pathfind jekyll || missing_gems="${missing_gems} jekyll"
+
+if [ -n "$missing_debs" ]; then
+	messagehili "Eksik paketler: $missing_debs kuruluyor...  [sudo onayı gerekebilir]"
+	sudo apt-get install $missing_debs
+fi
+if [ -n "$missing_gems" ]; then
+	messagehili "Eksik gemler: $missing_gems kuruluyor...  [sudo onayı gerekebilir]"
+	sudo gem install $missing_gems
+fi
+
+messagehili "Betik kısayolları ayarlanıyor..."
+
+git config alias.test		"!${THISDIR}/commands/test"
+git config alias.t		"!${THISDIR}/commands/test"
+
+git config alias.edit		"!${THISDIR}/commands/edit"
+git config alias.e		"!${THISDIR}/commands/edit"
+
+git config alias.new		"!${THISDIR}/commands/new"
+git config alias.n		"!${THISDIR}/commands/new"
+
+git config alias.upstream	"!${THISDIR}/commands/upstream"
+
+if ! git remote | grep -q '^upstream$'; then
+	messagehili "Depo güncellemelerine abone olunuyor..."
+	git remote add upstream "git://${UPSTREAM_ADDR}"
+	git fetch upstream
+fi
+
+messagehili "Öntanımlı Jekyll yapılandırması hazırlanıyor...  [soruları yanıtlayın]"
+ruby <<EOF
+  require 'erb'
+
+  def erbify(infile, outfile=nil)
+    if infile =~ /.erb\$/
+      if outfile == nil
+	outfile = infile.sub('.erb', '')
+      end
+      STDIN.reopen '/dev/tty'
+      File.open(outfile, 'w') do |file|
+	file.write ERB.new(File.read(infile), nil, '-').result(binding)
+      end
+    end
+  end
+
+  trap("INT") { puts; puts "Tamam çıkıyorum!"; exit }
+  erbify('${THISDIR}/samples/_config.yml.erb', '_config.yml')
+EOF
+
+URL=$(sed -ne 's/^url: *//p' _config.yml)
+if [ -n "$URL" ]; then
+	messagehili "Depo ilkleniyor..."; {
+		git add _config.yml
+		cp -a $THISDIR/init/* .
+		find $THISDIR/init -type f -printf "%P\n" | xargs git add
+
+		date=$(date +'%Y-%m-%d')
+		for category in $(seq 0 9); do
+			sample="${THISDIR}/samples/post-${category}"
+
+			[ -f "$sample" ] || continue
+			[ -d "$category" ] || continue
+
+			post="${category}/_posts/${date}-00000.md"
+			mkdir -p "$(dirname $post)"
+			cat "$sample" >"$post"
+			git add "$post"
+		done
+	} || {
+		git reset --hard
+		messagehili "Depo ilklemesi başarısız!"
+		exit 1
+	}
+
+	messagehili "Depo GitHub'a gönderiliyor..."
+	git commit -a -m "ilk"
+	git push origin master
+	messagehili "Kurulum tamamlandı."
+
+	cat >&2 <<-EOF
+Lütfen GitHub'ın güncelleme yapması için kısa bir süre bekledikten sonra
+sitenizi aşağıdaki adresten kontrol edin:
+
+	$URL
+	EOF
+else
+	internalerror  "site adresi belirlenemedi"
+fi

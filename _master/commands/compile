@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Jekyll ile derleme yapar.
+
+THISDIR="${0%/*}"
+. $THISDIR/../util.sh
+
+exec jekyll --rdiscount --url http://localhost:4000

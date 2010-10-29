@@ -1,0 +1,91 @@
+{% sh/sh/ ex message pathfind pkgfind yesno %}
+
+PATH=$PATH:/var/lib/gems/1.8/bin
+export PATH
+
+SECT_PATTERN='[0-9]/_posts'
+DATE_PATTERN='[1-2][0-9][0-9][0-9]-[0-1][1-9]-[0-3][0-9]'
+ID_PATTERN='[0-9][0-9]*' # şartları biraz toleranslı yap, em az iki rakam
+POST_PATTERN="$DATE_PATTERN-$ID_PATTERN.*"
+
+current () {
+	head -n 1
+}
+
+next () {
+	awk -F/ 'NR == 1 {
+		cat  = $1
+		slug = $2
+
+		$0 = $3
+
+		sub(/^.*-/, "")
+		split($0, f, ".")
+		fmt = "%0" length(f[1]) "d"
+		newid = sprintf(fmt, f[1]+1)
+		ext = f[2]
+
+		print cat "/" slug "/" "'$(
+			date +'%Y-%m-%d'
+		)'" "-" newid "." ext
+	}'
+}
+
+listposts () {
+	ls -t ${1:-[0-9]}/_posts/$POST_PATTERN 2>/dev/null
+}
+
+currentpost () {
+	listposts "$@" | current
+}
+
+nextpost () {
+	listposts "$@" | next
+}
+
+checksect () {
+	local sect="$1"
+	if [ -n "$sect" ]; then
+		case "$sect" in
+		[01279])
+			if [ ! -d "$sect/_posts" ]; then
+				die "önce lütfen uygun bir $sect dizini oluşturun"
+			fi
+		;;
+		*)
+			die "kategori $sect 0, 1, 2, 7 veya 9 olmalı"
+		;;
+		esac
+	fi
+}
+
+editor () {
+	local preferred=${EDITOR:-vi}
+	EDITOR_USED="$preferred"
+	if tty -s; then
+		$EDITOR_USED "$@"
+	else
+		$EDITOR_USED "$@" </dev/tty
+	fi
+
+}
+
+getmd5sum () {
+	local file="$1"
+	if [ -f "$file" ]; then
+		md5sum "$file" | cut -f1 -d' '
+	fi
+}
+
+isgedit_used () {
+	case "$EDITOR_USED" in gedit*) return 0 ;; esac
+	return 1
+}
+
+ischanged () {
+	local post="$1" md5sum="$2"
+	case "$(getmd5sum $post)" in
+	"$md5sum") return 1 ;;
+	*) return 0 ;;
+	esac
+}

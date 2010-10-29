@@ -1,0 +1,25 @@
+#!/bin/sh -e
+
+# Şablondaki güncellemeleri indir ve uygula.
+
+THISDIR="${0%/*}"
+. $THISDIR/../util.sh
+
+if [ -n "$(git status --short)" ]; then
+	message "Deponuzda kaydetmediğiniz değişiklikler var."
+	message "Lütfen 'git commit' ile önce bunları kaydedin."
+	exit 1
+fi
+
+git fetch upstream
+git checkout master
+if ! git merge upstream/master; then
+	message
+	message "Ana kopya değişiklikleri birleştirilemedi, işlem geri alınacak."
+	message "  - çakışmaları görmek için 'git merge upstream/master'"
+	message "  - birleştirme işlemini iptal için  'git reset --hard'"
+	message	"komutlarını çalıştırın."
+	message
+	git reset --hard
+	exit 1
+fi

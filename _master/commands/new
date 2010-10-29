@@ -1,0 +1,77 @@
+#!/bin/bash
+
+# Yeni girdi oluştur, düzenle ve (değişiklik varsa) depoya ekle.
+#
+# Argüman opsiyoneldir ve kategori belirtir.
+#
+# Argüman verilmezse kategori olarak dizin değişme tarihi en yeni olan
+# kategori seçilir.
+#
+# Yeni girdiler için şablon olarak "post.sample" dosyası kullanılır.
+
+set -e
+
+THISDIR="${0%/*}"
+. $THISDIR/../util.sh
+
+sample () {
+	cat "$THISDIR/../samples/$1"
+}
+
+onexit () {
+	local post="$1" md5sum="$2"
+
+	local exitcode=$?
+	if [ $exitcode -ne 0 ] || ! [ -f "$post" ]; then
+		rm -f "$post"
+		exit $exitcode
+	fi
+
+	if isgedit_used; then
+		trap '
+			exitcode=$?
+			messagehili
+			messagehili "Lütfen dosyayı kaydettikten sonra elle eklemeyi unutmayın:"
+			messagehili
+			messagehili "    git add $post"
+			messagehili
+			rm -f "$post"
+			exit 0
+		' INT TERM
+		messagehili "Gedit ile açtığınız $post dosyasını (en az bir kere) kaydetmenizi bekliyorum..."
+		messagehili "[beklemeyi iptal etmek için lütfen Ctrl-C'ye basın]"
+
+		while :; do
+			sleep 2
+			if ! [ -f "$post" ]; then
+				exit 0
+			fi
+			if ischanged "$post" "$md5sum"; then
+				break
+			fi
+		done
+	else
+		if ! ischanged "$post" "$md5sum"; then
+			rm -f "$post"
+		fi
+	fi
+
+	# FIXME
+	git add "$post"
+}
+
+newpost=$(nextpost "$@")
+if [ -z "$newpost" ]; then
+	checksect "$@"
+	internalerror "yeni posta hesaplanamadı"
+fi
+if [ -f "$newpost" ]; then
+	internalerror "zaten varolan bir dosya yeni posta olarak hesaplandı"
+fi
+
+sample post >"$newpost"
+md5sum=$(md5sum $newpost)
+trap "onexit $newpost $md5sum" EXIT HUP QUIT INT TERM
+
+editor "$newpost"
+echo $post

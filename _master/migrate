@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Mevcut bir Jekyll sitesindeki gönderileri bu şablona uygun hale getir.
+
+set -e
+
+THISDIR="${0%/*}"
+. $THISDIR/util.sh
+
+if [ $# -lt 2 ]; then
+	die "kullanım: $0 <girdi dizini> <çıktı dizini>"
+fi
+
+INDIR="$1"
+OUTDIR="$2"
+
+if [ ! -d "$INDIR" ]; then
+	die "$INDIR adında bir dizin yok"
+fi
+
+mkdir -p $OUTDIR
+
+id=0
+for post in $INDIR/*; do
+	post=${post##*/}
+
+	date=$(echo $post | sed -e "s/\($DATE_PATTERN\)-.*/\1/")
+	ext=${post##*.}
+
+	case "$date" in
+	$DATE_PATTERN) ;;
+	*) continue;;
+	esac
+
+	migrated=$date-$(printf "%05d" $id).$ext
+	message "$INDIR/$post ==> $OUTDIR/$migrated"
+
+	sed '/^#\+[[:blank:]]*[{][{][[:blank:]]page[.]title[[:blank:]]*[}][}]/,/^$/d' <"$INDIR/$post" >"$OUTDIR/$migrated"
+
+	id=$(($id + 1))
+done
+
+if [ $id -gt 0 ]; then
+	messagehili "$id adet kayıt $OUTDIR dizinine aktarıldı."
+else
+	messagehili "$INDIR dizininde uygun kayıt bulunamadı."
+fi

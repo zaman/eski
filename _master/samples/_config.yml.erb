@@ -1,0 +1,103 @@
+# ======================================================================
+# 19 Jekyll yapılandırması
+# ======================================================================
+<% require 'highline/import' -%>
+
+# kalıcı adresler (lütfen bu ayara dokunmayın)
+permalink: /:categories:title
+
+# sözdizimi renklendirmesi
+pygments: true
+
+# ----------------------------------------------------------------------
+# temel parametreler
+# 
+# bu parameterleri doğrudan "site" uzayına yerleştiriyoruz
+# ----------------------------------------------------------------------
+
+# github hesap adı (ör. roktas)
+account: <%= STDOUT.flush; account = ask("GitHub Hesap Adı? ") { |q| q.default = ENV['USER'] }; account %>
+
+# github organizasyonu (ör. 19)
+organization: 19
+
+# bu siteyi üreten github deposu (ör. roktas.github.com)
+repository: <%= STDOUT.flush; ask("Depo Adı? ") { |q| q.default = account + '.github.com' } %>
+
+# üretilen sitenin web adresi ne?  ör. "http://foo.github.com/bar".
+url: <%= STDOUT.flush; ask("Bu Site için Web Adresi? ") { |q| q.default = 'http://' + account + '.github.com' } %>
+
+# sitede kullanılan ortak "dijital varlıklar"ın (ör. görseller, logolar)
+# adresi.  dikkat:
+#
+# - site görünümüne ait görsel ve javascript dosyaları chrome dizininde
+# - içeriklerde kullanılan resim ve görsel için images dizininde
+# - bu adresi mutlak formda tanımlayın.  örnekler:
+#
+# 	/assets
+# 	http://00010011.github.com/assets
+assets: /chrome
+
+# ----------------------------------------------------------------------
+# site parametreleri
+# 
+# kalan tüm parameterleri "site.param" uzayına koyuyoruz
+# ----------------------------------------------------------------------
+param:
+        # --------------------------------------------------------------
+        # kişisel parametreler
+        # --------------------------------------------------------------
+        # kısa kullanıcı adı (ör. roktas)
+        # dikkat!  sisteminizdeki ad github hesabından farklı olabilir
+        name: <%= ENV['USER'] %>
+        # tam kullanıcı adı (ör. Recai Oktaş)
+        fullname: <%= STDOUT.flush; fullname = ask("Ad ve Soyad? "); fullname %>
+        # email adresi (ör. roktas@bil.omu.edu.tr)
+        email: <%= STDOUT.flush; ask("Eposta? ") { |q| q.default = account + '@bil.omu.edu.tr' } %>
+        # sitede kullanılacak tepe web adresi (ör. http://roktas.me)
+        # dikkat!  bu değişkeni "url" ile karıştırmayın!
+        web: http://00010011.github.com
+        # ünvan (ör. Bilgisayar Mühendisliği Öğrencisi)
+        title: <a href="http://ondokuz.biz/">19</a> üyesi
+        # GnuPG kısa parmak izi (ör. DEADBEEF)
+        gpg: <%= STDOUT.flush; ask("GnuPG Parmak İzi? ") { |q| q.default = '~' } %>
+        # twitter adresi (ör. http://19.statusnet/roktas)
+        twitter: <%= STDOUT.flush; ask("Twitter? ") { |q| q.default = 'http://19.status.net/' + account } %>
+        # flick adresi (ör. http://flickr.com/photos/roktas)
+        flickr: <%= STDOUT.flush; ask("Flickr? ") { |q| q.default = 'http://flickr.com/photos/' + account } %>
+        # facebook adresi (ör. http://facebook.com/roktas)
+        facebook: <%= STDOUT.flush; ask("Facebook? ") { |q| q.default = 'http://facebook.com/' + account } %>
+        # özet akışı adresi (ör. http://feeds.feedburner.com/roktas)
+        feed: <%= STDOUT.flush; ask("Özet Akışı? ") { |q| q.default = 'http://feeds.feedburner.com/' + account } %>
+
+        # --------------------------------------------------------------
+        # sitede kullanılan bazı metinler
+        # --------------------------------------------------------------
+        section0: Web Günlüğü
+        section1: Makaleler
+        section2: İlkeler
+        section7: Çeşitli
+        section9: Notlar
+
+        # --------------------------------------------------------------
+        # ekstra özellik parametreleri
+        #
+        # bu değişkenler tanımlanmazsa (~ kullanın) öntanımlı sitede
+        # ilgili özellik bulunmayacaktır (örneğin: disqus)
+        #
+        # dikkat!  değişkenin tanımlı olmaması için ~ değeri verin
+        # --------------------------------------------------------------
+        # girdi arşivi
+        archive: Son Girdiler
+        # ilişkili girdiler
+        related: Diğer Girdiler
+        # logo (ör. http://00010011.github.com/assets/19/19-normal-128x128.png)
+        logo: /chrome/19/19-normal-128x128.png
+        # google arama kutusu
+        google: true
+        # google analytics takip numarası (ör. UA-1234567-8
+        googleanalyticsid: ~
+        # sayfa yorumları için disqus site kaydı (ör. roktas)
+        disqus: ~
+        # GitHub şerit metni (ör. GitHub'dayım)
+        ribbon: GitHub'dayım
