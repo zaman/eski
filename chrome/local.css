@@ -7,6 +7,10 @@ layout: nil
  * Siteye özel Baz CSS
  * =============================================================================
  */
+body {
+background-color: none;
+background-image:url('../chrome/background/background.jpg')
+}
 
 
 .ribbon {
@@ -51,8 +55,4 @@ layout: nil
   display:inline-block;
   width: 32px;
   height: 32px;
-}
-body {
-background-color: none;
-background-image:url('../chrome/background/background.jpg')
 }
