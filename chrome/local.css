@@ -18,6 +18,7 @@ background-image:url('../chrome/background/background.gif')
 }
 .ribbon a {
 	border: 1px solid #63fff2;
+	background-color:#B2A4A4
 }
 #navtop {
   background-image:url('../chrome/huruf/star-red-32-negative.png');
