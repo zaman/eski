@@ -1,6 +1,6 @@
 ---
 layout: post
-title: sudo olamama sorunu
+title: shell programlamaya giriş
 ---
 
 >>> ### Kabuk (Shell) Programlamaya Giriş
