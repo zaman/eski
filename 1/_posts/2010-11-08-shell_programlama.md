@@ -42,4 +42,59 @@ birde tamsayı ataması yapalım `x=3` x'e 3 değeri atandı bu değeri bir art�
 
 set ettiğimiz değeri silmek için `$ unset x` dememiz yeterli.
 
+#### if yapısı
+
+ `if true; then echo 'true'; fi`
+bu komutun çıktısı `$ true` olur.
+
+*** shell programlamada `true`
+ ifadesinin dönüş değeri `0`'dır. Yanlıs durumu ise `0` 'dan farklı bir değer ile dönüş yapar.
+
+#### if - else yapısı
+
+`file="foo"`
+
+`if ls $file 1>/dev/null`
+
+`then`
+
+> `echo "olan bir dosya"`
+
+`else`
+
+> `echo "olmayan dosya"`
+
+`fi`
+
+ verilen değeri terminalden almak için `file=$1` atamasını yapmamız yeterli.
+
+
+` $0 ` => programın ismi
+
+ ` $1,$2,$3,$4,$5,$6,$7,$8,$9  ` => terminalden verdiğimiz veriler
+
+` $* ` tüm parametreler
+
+`$#` terminalden girdiğimiz verilerin adeti (`argc`)
+
+
+`if [ $# -eq 1 ] `
+
+`then`
+
+> `echo "terminalden veri girmediniz" `
+
+`fi`
+
+-eq => " == "
+
+-lt => " < "
+
+-le => " <= "
+
+-gt => " > "
+
+-ge => " >= "
+
+-ne => " != "
 
