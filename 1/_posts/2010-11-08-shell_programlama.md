@@ -3,7 +3,6 @@ layout: post
 title: sudo olamama sorunu
 ---
 
-
 >>> ### Kabuk (Shell) Programlamaya Giriş
 
 Kabuk kullanıcı ile çekirdek arasında bulunan bir yazılım katmanıdır. Görevi 
