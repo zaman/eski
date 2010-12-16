@@ -54,19 +54,13 @@ bu komutun çıktısı `$ true` olur.
 
 #### if - else yapısı
 
-`file="foo"`
+file="foo"
 
-`if ls $file 1>/dev/null`
-
-`then`
-
-> `echo "olan bir dosya"`
-
-`else`
-
-> `echo "olmayan dosya"`
-
-`fi`
+if ls $file 1>/dev/null; then
+	echo "olan bir dosya"
+else
+	echo "olmayan dosya"
+fi
 
 {% endhighlight %}
 
