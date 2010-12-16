@@ -44,6 +44,8 @@ set ettiğimiz değeri silmek için `$ unset x` dememiz yeterli.
 
 #### if yapısı
 
+{% highlight ruby %}
+
  `if true; then echo 'true'; fi`
 bu komutun çıktısı `$ true` olur.
 
@@ -65,6 +67,8 @@ bu komutun çıktısı `$ true` olur.
 > `echo "olmayan dosya"`
 
 `fi`
+
+{% endhighlight %}
 
  verilen değeri terminalden almak için `file=$1` atamasını yapmamız yeterli.
 
