@@ -44,7 +44,7 @@ set ettiğimiz değeri silmek için `$ unset x` dememiz yeterli.
 
 #### if yapısı
 
-{% highlight ruby %}
+{% highlight sh %}
 
  `if true; then echo 'true'; fi`
 bu komutun çıktısı `$ true` olur.
