@@ -46,11 +46,11 @@ set ettiğimiz değeri silmek için `$ unset x` dememiz yeterli.
 
 {% highlight bash %}
 
- `if true; then echo 'true'; fi`
-bu komutun çıktısı `$ true` olur.
+if true; then echo 'true'; fi
+bu komutun çıktısı $ true olur.
 
-*** shell programlamada `true`
- ifadesinin dönüş değeri `0`'dır. Yanlıs durumu ise `0` 'dan farklı bir değer ile dönüş yapar.
+*** shell programlamada true
+ ifadesinin dönüş değeri 0'' dır. Yanlıs durumu ise 0 dan farklı bir değer ile dönüş yapar.
 
 #### if - else yapısı
 
@@ -67,22 +67,20 @@ fi
  verilen değeri terminalden almak için `file=$1` atamasını yapmamız yeterli.
 
 
-` $0 ` => programın ismi
+ $0  => programın ismi
 
- ` $1,$2,$3,$4,$5,$6,$7,$8,$9  ` => terminalden verdiğimiz veriler
+  $1,$2,$3,$4,$5,$6,$7,$8,$9   => terminalden verdiğimiz veriler
 
-` $* ` tüm parametreler
+ $*  tüm parametreler
 
-`$#` terminalden girdiğimiz verilerin adeti (`argc`)
+$# terminalden girdiğimiz verilerin adeti (argc)
 
 
-`if [ $# -eq 1 ] `
+if [ $# -eq 1 ] ; then
 
-`then`
+> echo "terminalden veri girmediniz" 
 
-> `echo "terminalden veri girmediniz" `
-
-`fi`
+fi
 
 -eq => " == "
 
