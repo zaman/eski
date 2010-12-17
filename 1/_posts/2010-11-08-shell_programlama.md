@@ -15,12 +15,12 @@ kullanıcının yapılmasını istediği işlemleri yorumlayıp çekirdek katman
 * csh
 * tsh
 
-Yukarıdaki shell türleri gibi daha bir çok shell türü bulunmaktadır. En fazla kullanılan shell türü bash'tir.
+Yukarıdaki shell türleri gibi daha bir çok shell türü bulunmaktadır. En fazla kullanılan shell türü bash''tir.
 
 
 Sistemimizdeki bash versionunu `echo $BASH_VERSION` komutuyla öğrenebiliriz.
 
-Sistem ilk açıldığında çalışan bash'dir.Ama;
+Sistem ilk açıldığında çalışan bash''dir.Ama;
 `ls -al` komutunu verdiğimizde bu komut `/bin/dash` te çalışır.Çünkü `/bin/bash` ile `/bin/dash` arasında boyut farkı vardır.
 
 * `du /bin/bash` => 788k
@@ -38,13 +38,13 @@ $var="merhaba" => burada `var` değişkenine "merhaba" dizgisi atanmıştır.
 
 `echo $var` yada `echo "${var}"` diyerek var değişkeninin içeriğini ekrana yazdırabilirsiniz.
 
-birde tamsayı ataması yapalım `x=3` x'e 3 değeri atandı bu değeri bir artırmak istersek `$ x=$(($x+1))` diyoruz.
+birde tamsayı ataması yapalım `x=3` x''e 3 değeri atandı bu değeri bir artırmak istersek `$ x=$(($x+1))` diyoruz.
 
 set ettiğimiz değeri silmek için `$ unset x` dememiz yeterli.
 
 #### if yapısı
 
-{% highlight sh %}
+{% highlight bash %}
 
  `if true; then echo 'true'; fi`
 bu komutun çıktısı `$ true` olur.
