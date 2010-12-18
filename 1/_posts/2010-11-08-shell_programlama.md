@@ -55,7 +55,7 @@ bu komutun çıktısı $ true olur.
 #### if - else yapısı
 
 
-{% highlight bash %}
+{% highlight sh %}
 
 	file="foo"
 	if ls $file 1>/dev/null; then
