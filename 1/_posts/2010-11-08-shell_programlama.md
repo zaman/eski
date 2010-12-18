@@ -44,7 +44,7 @@ set ettiğimiz değeri silmek için `$ unset x` dememiz yeterli.
 
 #### if yapısı
 
-{% highlight bash %}
+
 
 if true; then echo 'true'; fi
 bu komutun çıktısı $ true olur.
@@ -53,6 +53,9 @@ bu komutun çıktısı $ true olur.
  ifadesinin dönüş değeri 0'' dır. Yanlıs durumu ise 0 dan farklı bir değer ile dönüş yapar.
 
 #### if - else yapısı
+
+
+{% highlight bash %}
 
 file="foo"
 
