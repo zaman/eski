@@ -57,13 +57,12 @@ bu komutun çıktısı $ true olur.
 
 {% highlight bash %}
 
-file="foo"
-
-if ls $file 1>/dev/null; then
-	echo "olan bir dosya"
-else
-	echo "olmayan dosya"
-fi
+	file="foo"
+	if ls $file 1>/dev/null; then
+		echo "olan bir dosya"
+	else
+		echo "olmayan dosya"
+	fi
 
 {% endhighlight %}
 
