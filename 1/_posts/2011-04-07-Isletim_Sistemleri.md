@@ -3,6 +3,10 @@ layout: post
 title: Isletim Sistemleri                                                      
 ---
 ### Thread & Process
+
+ProcessStateDiagram.swf animasyonuna https://github.com/zaman/file adresinden
+erişebilirsiniz
+
 process; ikili kodun bellekte çalıştırılabilir hale gelmiş haline denir.
 
 scheduling; zaman tahsili
@@ -59,7 +63,7 @@ diske yazan bir proses var baska bir prosesde diske yazmaya kalktı diske yazmak
 uzun sürdüğü için bu proses uyuyanlara alınır. yazma işleminden interupt
 geldiğinde uyuyan proses hazırlara gecer.
 
-her prses için input output stderr açılır.
+her proses için input output stderr açılır.
 
 bir prosesin belleğine başka bir proses erişemez. ama thredlerde böyle değil.
 threadler birbirlerininin belleğine ulaşbilir. threadleri proseslerden ayıran
