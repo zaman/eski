@@ -19,7 +19,7 @@ scheduler dispatch; kuyruga geri yolla yenisini al
 
 diske yazma işlemi vakit alan bir işlemdir.
 
-en hızlı register'a yazılır.
+en hızlı register''a yazılır.
 
 thread; çalıştırma birimi
 
@@ -68,4 +68,46 @@ her proses için input output stderr açılır.
 bir prosesin belleğine başka bir proses erişemez. ama thredlerde böyle değil.
 threadler birbirlerininin belleğine ulaşbilir. threadleri proseslerden ayıran
 budur.
+
+deathlock yuruyorum ben sağa geçiyorum o sola geciyor onlemek için mutex lazım ;)
+
+thread = evre  process = süreç türkce olarak
+
+concurrency = ayn anda bir takım işleri yapabilmek
+
+IPC = prsosesler arası iletisim.
+
+her threadin bir stack''i var 
+
+unix te bir proses açıldıgı zaman stdin stdout ve stderr o proses için açılır.
+
+preemptive multitasking operating system => unix (çok görevli) işletim sistemi bir prosesin devamlı cpu yu devamlı kullanmasını engeller.
+
+coorparative multitasking o.s => (bir gorevden baska bir goreve gecisi kararı işletim sistemi vermiyo uygulama veriyor)
+
+okuma yazmaya ihtiyaç varsa işletim sisteminin sistem çağırılarıyla gerçekleştirir.
+
+işletim sistemi bir görevden baska bir goreve geçişi (dispath) saat vuruşları anında verir.==> (clock interrup)
+
+race condition durumları için alt başlıklar mutex,spinlock,semophore
+
+IPC süreçler arası iletişim.
+
+mutex --> ortağı dışlayıcı (kardış)
+
+kısa sürüyorsa spinlock
+driverlar da spinlock.
+
+semophore (0-255) arası değer alır.
+
+mutex (0-1) alır.
+
+mutex semophore alt elemanıdır. mutex=binary semophore
+
+semophore birbirine benzer kayanklara baska proseslerin erişiminden dolayı olacak problemlere çözüm olarak düşünülmüş.
+
+producer/consumer producer üretimi sayıyor consumer tüketimi sayar.
+
+üretici tampon doluysa bişey girmemeli tüketici de bi şey beklememeli  http://en.wikipedia.org/wiki/Producer-consumer_problem
+
 
