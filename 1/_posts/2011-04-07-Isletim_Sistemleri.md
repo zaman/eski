@@ -110,4 +110,7 @@ producer/consumer producer üretimi sayıyor consumer tüketimi sayar.
 
 üretici tampon doluysa bişey girmemeli tüketici de bi şey beklememeli  http://en.wikipedia.org/wiki/Producer-consumer_problem
 
+atomik bir işlem ya yapılacak yada hiç yapılmayacak yarım kalmak yok. ( banka işlemleri )
+atomikliğin yapılmasını mutexle yapabiliriz. vur kilidi kimse gelmesin :D
+
 
