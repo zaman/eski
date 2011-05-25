@@ -23,8 +23,8 @@ background-image:url('../chrome/background/background.gif')
 #navtop {
   background-image:url('../chrome/huruf/profesor.png');
   display:inline-block;
-  width:32px;
-  height:32px;
+  width:101px;
+  height:101px;
   margin-right:3em;
 } 
 #navactive0 {
