@@ -1,4 +1,4 @@
-Eklenen veya değiştirilen her css parçasını `yui-compressor` ile minimize
+Eklenen veya değiştirilen her CSS parçasını `yui-compressor` ile minimize
 etmeyi unutmayın.
 
 - `yui-compressor`'ü kurmak için
