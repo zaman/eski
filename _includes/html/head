@@ -7,7 +7,6 @@
   <title>{{ page.title }}</title>
   <link href="{{ site.param.feed }}" rel="alternate" title="{{ site.param.fullname }}" type="application/atom+xml" />
 
-  <link rel="stylesheet" href="{{ site.url }}/chrome/site.css"   type="text/css" media="screen, projection" />
-  <link rel="stylesheet" href="{{ site.url }}/chrome/syntax.css" type="text/css" />
+  <link rel="stylesheet" href="{{ site.url }}/chrome/site.css" type="text/css" media="screen, projection" />
   <link rel="stylesheet" href="{{ site.url }}/chrome/local.css"  type="text/css" media="screen, projection" />
 </head>

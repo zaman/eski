@@ -2,12 +2,7 @@
   <p>
     {{ site.param.fullname }}<br />
     {{ site.param.title }}<br />
-    {% if site.param.email %}
-      <a href="mailto:please.no.spam.please{{ site.param.email }}please.no.spam.please"
-        onclick="this.href=this.href.replace(/please[.]no[.]spam[.]please/gi,'')"
-        title="Lütfen e-posta göndermek için tıklayın" >
-      E-posta adresi</a><br />
-    {% endif %}
+    {{ site.param.email }}<br />
     {% if site.param.gpg %}
       GnuPG ortak anahtar
     {% endif %}
@@ -21,7 +16,7 @@
       <a href="{{ site.param.flickr }}/">{{ site.param.flickr }}</a><br />
     {% endif %}
     {% if site.param.gpg %}
-      <a href="{{ site.url }}/{{ site.param.user }}.asc"><code>{{ site.param.gpg }}</code></a>
+      <a href="http://{{ site.param.web }}/{{ site.param.name }}.asc"><code>{{ site.param.gpg }}</code></a>
     {% endif %}
   </p>
 </div>

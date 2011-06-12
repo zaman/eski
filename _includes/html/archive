@@ -5,7 +5,7 @@
   <ul class="posts">
     {% for post in site.posts limit:30 %}
       <li>
-	<span>{{ post.date | date: '%Y-%m-%d' }}</span>
+	<span>{{ post.url | replace_first: '/', '' }} &mdash; {{ post.date | date: '%Y-%m-%d' }}</span>
 	&nbsp;&raquo;&nbsp;&nbsp;
 	<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
       </li>
