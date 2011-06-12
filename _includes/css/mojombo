@@ -29,6 +29,7 @@ h1 {
 
 h2, h3, h4, h5, h6 {
   font-size: 100%;
+  margin-top: 1em;
 }
 
 h1 {
@@ -196,6 +197,7 @@ ul.posts {
 
     #post pre code {
       border: none;
+      padding: 0;
     }
 
   /* terminal */

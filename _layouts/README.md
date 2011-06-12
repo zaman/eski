@@ -1,3 +1,6 @@
-Bu dizinle ilgili dokümanlar:
+Sayfa düzenleri
 
-- [`900006`](http://00010011.biz/900006)
+- `default`: Öntanımlı sayfa düzeni.
+- `front`: Sadece önsayfaya özel sayfa düzeni.
+- `post`: Girdiler için sayfa düzeni.
+- `postindex`: Girdiler indeksi için sayfa düzeni.
