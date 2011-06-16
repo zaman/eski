@@ -1,6 +1,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="keywords" content="işletim sistemleri,sudo sorunu,zafer,amancermez,zafer amanvermez,github" />
+  <meta name="keywords" content="işletim sistemleri,sudo
+  sorunu,zafer,amancermez,zafer amanvermez,github,daq kartı" />
   <meta name="author" content="{{ site.param.fullname }}" />
   {% if page.moved %}
   <meta http-equiv="refresh" content="3; url=http://{{ page.moved }}">
